@@ -200,10 +200,10 @@ impl Window {
             let styles = unsafe { GetWindowLongPtrW(self.window, GWL_STYLE) };
             let ex_styles = unsafe { GetWindowLongPtrW(self.window, GWL_EXSTYLE) };
 
-            if (ex_styles & isize::try_from(WS_EX_TOOLWINDOW.0).unwrap()) != 0 {
+            if (ex_styles as isize & isize::try_from(WS_EX_TOOLWINDOW.0).unwrap()) != 0 {
                 return false;
             }
-            if (styles & isize::try_from(WS_CHILD.0).unwrap()) != 0 {
+            if (styles as isize & isize::try_from(WS_CHILD.0).unwrap()) != 0 {
                 return false;
             }
         } else {
